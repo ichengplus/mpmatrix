@@ -170,3 +170,9 @@ typings/
 
 # next.js build output
 .next
+
+# sqlite3 db
+*.sqlite
+
+# vscode conf
+.vscode
