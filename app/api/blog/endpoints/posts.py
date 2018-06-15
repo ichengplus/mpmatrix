@@ -6,7 +6,7 @@ from api.blog.business import create_blog_post, update_post, delete_post
 from api.blog.serializers import blog_post, page_of_blog_posts
 from api.blog.parsers import pagination_arguments
 from api.restplus import api
-from model.models import Post
+from model.blogs import Post
 
 log = logging.getLogger(__name__)
 

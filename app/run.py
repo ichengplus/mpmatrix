@@ -10,8 +10,12 @@ from flask_restplus import Resource, Api
 from conf import settings
 from api.blog.endpoints.posts import ns as blog_posts_namespace
 from api.blog.endpoints.categories import ns as blog_categories_namespace
+from api.todo.endpoints.todos import ns as todo_namespace
 from api.restplus import api
 from model import db, reset_database
+
+from flask.cli import AppGroup
+import click
 
 # logging
 logging_conf_path = os.path.normpath(os.path.join(os.path.dirname(__file__), './conf/logging.conf'))
@@ -42,17 +46,15 @@ def initialize_app(flask_app):
     api.init_app(blueprint)
     api.add_namespace(blog_posts_namespace)
     api.add_namespace(blog_categories_namespace)
+    api.add_namespace(todo_namespace)
     flask_app.register_blueprint(blueprint)
 
     db.init_app(flask_app)
 
-@app.route('/init/random')
-def random_number():
-    response = {
-        'randomNumber': randint(1, 100)
-    }
-    reset_database()
-    return jsonify(response)
+# sanity check route
+@app.route('/ping', methods=['GET'])
+def ping_pong():
+    return jsonify('pong!')
 
 
 @app.route('/')
@@ -63,6 +65,18 @@ def index():
 @app.route('/<path:path>')
 def catch_all(path):
     return render_template("index.html")
+
+# cli scripts
+db_cli = AppGroup('db')
+
+#@click.argument('name')
+@db_cli.command('initdb')
+def init_db():
+    initialize_app(app)
+    log.info('db init...')
+    reset_database()
+
+app.cli.add_command(db_cli)
 
 if __name__ == '__main__':
     initialize_app(app)

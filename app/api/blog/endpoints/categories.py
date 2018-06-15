@@ -5,7 +5,7 @@ from flask_restplus import Resource
 from api.blog.business import create_category, delete_category, update_category
 from api.blog.serializers import category, category_with_posts
 from api.restplus import api
-from model.models import Category
+from model.blogs import Category
 
 log = logging.getLogger(__name__)
 

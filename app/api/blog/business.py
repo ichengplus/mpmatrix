@@ -1,5 +1,5 @@
 from model import db
-from model.models import Post, Category
+from model.blogs import Post, Category
 
 
 def create_blog_post(data):

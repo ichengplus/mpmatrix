@@ -4,6 +4,7 @@ db = SQLAlchemy()
 
 
 def reset_database():
-    from model.models import Post, Category  # noqa
+    from model.blogs import Post, Category  # noqa
+    from model.todos import Todo
     db.drop_all()
     db.create_all()
