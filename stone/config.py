@@ -8,7 +8,7 @@ JOBS = [
         'func': 'actoken:refresh',
         'args': None,
         'trigger': 'interval',
-        'seconds': 5
+        'seconds': 7000
     }
 ]
 
