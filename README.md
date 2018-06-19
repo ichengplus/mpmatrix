@@ -4,6 +4,13 @@
 * Design for operating.
 * Respect wechat eco. , pay attention to UnionID.
 
+## arch desc
+
+* app: backend application based on Flask
+* face: frontend application based on Vue
+* stone: runtime env. Docker, Nginx, Gunicore, Supervisor
+* api: api proxy to other worlds, eg. wechat api proxy, wechat access token middleware
+
 
 ## dev conf
 

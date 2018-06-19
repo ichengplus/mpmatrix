@@ -176,3 +176,6 @@ typings/
 
 # vscode conf
 .vscode
+
+# wechat secret config
+.wxsec.py
