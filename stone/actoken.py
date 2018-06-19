@@ -46,7 +46,7 @@ def refresh():
 
 if __name__ == '__main__':
     
-    redis_store.set('{0}_access_token'.format(app.config['APP_ID']), 'wechat_actoken init...')
+    refresh()
 
     scheduler=APScheduler()
     scheduler.init_app(app)
