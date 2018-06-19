@@ -38,11 +38,12 @@ def wechat():
     nonce = request.args.get('nonce', '')
     encrypt_type = request.args.get('encrypt_type', 'raw')
     msg_signature = request.args.get('msg_signature', '')
-    try:
-        check_signature(TOKEN, signature, timestamp, nonce)
-    except InvalidSignatureException:
-        abort(403)
+    
     if request.method == 'GET':
+        try:
+            check_signature(TOKEN, signature, timestamp, nonce)
+        except InvalidSignatureException:
+            abort(403)
         echo_str = request.args.get('echostr', '')
         return echo_str
 
