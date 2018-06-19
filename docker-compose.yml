@@ -1,0 +1,20 @@
+stone:
+  build: ./stone
+  command: python actoken.py
+  ports:
+   - "5000:5000"
+  volumes:
+   - ./stone:/code
+  links:
+   - redis
+redis:
+  image: redis
+api:
+  build: ./api
+  command: python server.py
+  ports:
+   - "5001:5001"
+  volumes:
+   - ./api:/code
+  links:
+   - redis

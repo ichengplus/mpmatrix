@@ -46,7 +46,10 @@ def refresh():
 
 if __name__ == '__main__':
     
-    refresh()
+    if app.config['TESTING']:
+        redis_store.set('{0}_access_token'.format(app.config['APP_ID']), 'actoken init...')
+    else:
+        refresh()
 
     scheduler=APScheduler()
     scheduler.init_app(app)
